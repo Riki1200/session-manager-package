@@ -1,12 +1,11 @@
 library session_manager;
 
+import 'dart:html';
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
-// import 'package:session_screen_manager/session_manager.dart';
-// this is the widget that will be used to wrap the app
 class SessionActivityManager extends StatefulWidget {
   final Widget child;
 
@@ -39,7 +38,12 @@ class SessionActivityManagerState extends State<SessionActivityManager>
 
   @override
   void initState() {
-    WidgetsBinding.instance.addObserver(this);
+    if (kIsWeb) {
+      window.addEventListener('focus', onFocus);
+      window.addEventListener('blur', onBlur);
+    } else {
+      WidgetsBinding.instance.addObserver(this);
+    }
     super.initState();
     _initializeTimer();
   }
@@ -57,10 +61,24 @@ class SessionActivityManagerState extends State<SessionActivityManager>
 
   @override
   void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
+    if (kIsWeb) {
+      window.removeEventListener('focus', onFocus);
+      window.removeEventListener('blur', onBlur);
+    } else {
+      WidgetsBinding.instance.removeObserver(this);
+    }
     super.dispose();
   }
 
+  void onFocus(Event e) {
+    didChangeAppLifecycleState(AppLifecycleState.resumed);
+  }
+
+  void onBlur(Event e) {
+    didChangeAppLifecycleState(AppLifecycleState.paused);
+  }
+
+  @override
   Widget build(BuildContext context) => Listener(
       key: widget.key,
       onPointerMove: (event) {
