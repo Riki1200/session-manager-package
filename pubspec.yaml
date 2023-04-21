@@ -3,6 +3,8 @@ description: A new Flutter package project.
 version: 0.0.1
 authors:
   - "RomeoDev"
+repository: https://github.com/Riki1200/session-manager-package
+publish_to: pubspec.json
 homepage: https://github.com/Riki1200/session-manager-package
 
 environment:
