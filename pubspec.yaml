@@ -1,10 +1,8 @@
 name: session_manager
 description: A new Flutter package project.
 version: 0.0.1
-authors:
-  - "RomeoDev"
 repository: https://github.com/Riki1200/session-manager-package
-publish_to: pubspec.json
+publish_to: https://pub.dartlang.org/
 homepage: https://github.com/Riki1200/session-manager-package
 
 environment:
