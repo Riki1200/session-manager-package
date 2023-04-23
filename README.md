@@ -43,6 +43,10 @@ Then, wrap your root widget with the SessionActivityManager widget and specify t
          onSessionExpired: () {
            // Handle session expiration
          },
+         sessionTimeout: Duration(minutes: 5),
+         onSessionActivity: () {
+            // handle session activity
+         },
          child: MaterialApp(
            title: 'My App',
            home: MyHomePage(),
