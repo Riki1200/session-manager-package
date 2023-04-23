@@ -24,7 +24,7 @@ To use session_manager, add the package as a dependency in your pubspec.yaml fil
 ```yaml
 
 dependencies:
-  session_manager: ^1.0.0
+  session_manager: ^0.0.1
 ```
 
 In your Dart code, import the session_manager library:
@@ -55,7 +55,7 @@ Then, wrap your root widget with the SessionActivityManager widget and specify t
 In this example, SessionActivityManager wraps a MaterialApp widget as the child, and the onSessionExpired callback function is specified to handle the expiration of the user session.
 
 Versioning
-The current version of session_manager is 1.0.0.
+The current version of session_manager is 0.0.1.
 
 We use semantic versioning to manage package versions. In short, the version number is in the format of MAJOR. MINOR. PATCH, where:
 
