@@ -1,7 +1,7 @@
 name: session_screen_manager_web
 description: The session-manager-package for Flutter can still be useful for managing session data related to user interaction in your application. For example, you could use the package to store data such as user preferences, settings, or other information that needs to be persisted across different user session
-version: 0.0.1
-repository: https://github.com/Riki1200/session-manager-package
+version: 0.0.2
+repository: http://github.com/Riki1200/session-manager-package
 homepage: https://github.com/Riki1200/session-manager-package
 
 environment:
