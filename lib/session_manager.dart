@@ -1,9 +1,10 @@
 library session_manager;
 
 import 'dart:async';
+import 'dart:html' if (dart.library.html) 'dart:html';
 
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 // import 'package:session_screen_manager/session_manager.dart';
 // this is the widget that will be used to wrap the app
@@ -39,7 +40,16 @@ class SessionActivityManagerState extends State<SessionActivityManager>
 
   @override
   void initState() {
-    WidgetsBinding.instance.addObserver(this);
+    if (kIsWeb) {
+      window.addEventListener('focus', (e) {
+        didChangeAppLifecycleState(AppLifecycleState.resumed);
+      });
+      window.addEventListener('blur', (e) {
+        didChangeAppLifecycleState(AppLifecycleState.paused);
+      });
+    } else {
+      WidgetsBinding.instance.addObserver(this);
+    }
     super.initState();
     _initializeTimer();
   }
@@ -57,7 +67,16 @@ class SessionActivityManagerState extends State<SessionActivityManager>
 
   @override
   void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
+    if (kIsWeb) {
+      window.removeEventListener('focus', (e) {
+        didChangeAppLifecycleState(AppLifecycleState.resumed);
+      });
+      window.removeEventListener('blur', (e) {
+        didChangeAppLifecycleState(AppLifecycleState.paused);
+      });
+    } else {
+      WidgetsBinding.instance.removeObserver(this);
+    }
     super.dispose();
   }
 
@@ -72,8 +91,7 @@ class SessionActivityManagerState extends State<SessionActivityManager>
         onTap: () => _handleUserInteraction(),
         onPanDown: (_) => _handleUserInteraction(),
         onScaleStart: (_) => _handleUserInteraction(),
-        // ... repeat this for all gesture events
-        behavior: HitTestBehavior.translucent,
+        behavior: defualtBehavior,
         child: widget.child,
       ));
 

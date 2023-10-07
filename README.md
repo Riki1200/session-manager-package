@@ -19,7 +19,7 @@ The session_manager package provides a set of widgets and functionalities design
 
 To use session_manager, add the package as a dependency in your pubspec.yaml file:
 <!-- Create code     -->
-To use session_manager, add the package as a dependency in your pubspec.yaml file:
+
 
 ```yaml
 
